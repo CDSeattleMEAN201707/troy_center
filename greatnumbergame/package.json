@@ -1,0 +1,22 @@
+{
+  "name": "greatnumbergame",
+  "version": "1.0.0",
+  "description": "Coding Dojo assignment Great Number Game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andonon/CD_MEAN_GreatNumberGame.git"
+  },
+  "author": "Troy Center",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andonon/CD_MEAN_GreatNumberGame/issues"
+  },
+  "homepage": "https://github.com/Andonon/CD_MEAN_GreatNumberGame#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
