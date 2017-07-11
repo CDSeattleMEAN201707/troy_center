@@ -1,0 +1,102 @@
+<html>
+<head>
+	<title>Javascript Demo</title>
+</head>
+<body>
+  <script>
+		// Create a new class called Ninja with the following attributes:
+
+		// name
+		// health
+		// speed (private)
+		// strength (private)
+		// Speed and strength should be 3 by default. Health should be 100 by default.
+		function Person(name, health = 100, speed = 1, strength = 1){
+			// attributes of a person			
+			this.name = name;
+			this.health = health;
+			this.speed = speed;
+			this.strength = strength;
+		Person.prototype.sayName = function(){
+				console.log("Hello my name is " + this.name + ". I'm not a Ninja.");
+			}
+		}
+		function Ninja(name, health = 100, speed = 3, strength = 3){
+			// attributes of a ninja			
+			this.name = name;
+			this.health = health;
+			this.speed = speed;
+			this.strength = strength;
+			// when attached to an object or instance, functions are called 'methods'.
+			// this is our first method, greet
+			
+			Ninja.prototype.sayName = function(){
+				console.log("Hello my name is " + this.name + ".");
+			}
+			Ninja.prototype.showStats = function(){
+				console.log("My Health is " + this.health + ", speed " + this.speed + ", and strength " + this.strength + ".");
+			}
+			Ninja.prototype.drinkSake = function(){
+				this.health+=10;
+			}
+			Ninja.prototype.punch = function(punchee){
+				if (punchee instanceof Ninja){
+					punchee.health-=5;
+					console.log(punchee.name + " was punched by " + this.name + " and lost 5 health.")
+				}
+				else {
+					console.log("Ninjas can only punch Ninjas, not People")	
+				}
+			}	
+			Ninja.prototype.kick = function(kickee){
+				if (kickee instanceof Ninja){
+				kickee.health-=this.strength*5;
+				console.log(kickee.name + " was kicked by " + this.name + " and lost " + this.strength*5 + " health.")
+				}
+				else {
+					console.log("Ninjas can only kick other Ninjas...")
+				}
+			}
+		}
+
+		// create the 'steve' instance, run greet
+		console.log("***************************************")
+		let blue_ninja = new Ninja("Goemon");
+		blue_ninja.sayName()
+		let red_ninja = new Ninja("Bill Gates");
+		red_ninja.sayName()
+
+		red_ninja.punch(blue_ninja);
+		red_ninja.punch(blue_ninja);
+		red_ninja.punch(blue_ninja);
+		red_ninja.punch(blue_ninja);
+		red_ninja.punch(blue_ninja);
+		// -> "Goemon was punched by Bill Gates and lost 5 Health!"
+
+		red_ninja.kick(blue_ninja)
+
+		console.log("red_ninja health: " + red_ninja.health)
+		console.log("blue_ninja health: " + blue_ninja.health)
+
+		let jack = new Ninja("Jack");
+		jack.sayName();
+		jack.showStats();
+		jack.drinkSake();
+		// create the 'anika' instance, run greet. note that it is different.
+		let mike = new Ninja("Mike", health = 80);
+		mike.sayName();
+		mike.showStats();
+		mike.drinkSake();
+		mike.drinkSake();
+		mike.drinkSake();
+		mike.showStats();
+
+		let troy = new Person("Troy")
+		red_ninja.punch(troy);
+		red_ninja.kick(troy);
+		red_ninja.kick(jack);
+
+
+	</script>
+</body>
+</html>

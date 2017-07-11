@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+<meta description='Main Page'>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			function getGitHubName(){
+				$.get("https://api.github.com/users/Andonon", function(res) {
+						var html_str = "";
+						html_str += "<h3>" + res.name + "</h3>";
+						$("#githubname").html(html_str);
+				}, "json");}
+				var button = document.getElementById("gitHub")
+				button.addEventListener("click", getGitHubName);
+				})
+	</script>
+	<body>
+		    <button id="gitHub">This button will get your GitHub Name.</button>
+				<p>Name found:</p>
+				<div id="githubname">
+				</div>
+	</body>
+</html>
+
+
+

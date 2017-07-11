@@ -1,0 +1,138 @@
+<html>
+<head>
+	<title>Javascript Demo</title>
+</head>
+<body>
+	<script>
+	function sleep(ms) {
+  		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
+	class Deck {
+		constructor(){
+			this.suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
+			this.values = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+			this.cards = this.starterDeck();
+		};
+		starterDeck(){
+			// function to generate the deck of cards. 
+			let cards = [];
+			for(let suit = 0; suit < this.suits.length; suit++){
+				let suitname = this.suits[suit];
+				for (let value = 0; value < this.values.length; value++){
+					cards.push(this.values[value] + " of " +  this.suits[suit])
+				}
+			}
+			return cards;	
+		}
+		shuffleDeck(){
+			var array = this.cards
+			var m = this.cards.length, t, i;
+
+			// While there remain elements to shuffle…
+			while (m) {
+
+				// Pick a remaining element…
+				i = Math.floor(Math.random() * m--);
+
+				// And swap it with the current element.
+				t = array[m];
+				array[m] = array[i];
+				array[i] = t;
+			}
+
+			return array;
+			}
+		resetDeck(){
+			this.cards = this.starterDeck();
+		}
+		dealCard(){
+			let card = this.cards.pop();
+			console.log(card)
+			return card;
+		}
+		qtyDeck() {
+			console.log(this.cards.length)
+		}
+		showDeck(){
+			console.log(this.cards);
+		}
+	};
+	
+	class Player {
+		constructor(name){
+			this.name = name;
+			this.hand = [];
+		}
+		sayHi() {
+			console.log(`Hi I'm ${this.name}!`)
+		}
+		drawCard(currdeck) {
+			let drawnCard = currdeck.dealCard();
+			this.hand.push(drawnCard)
+			console.log(this.hand);
+		}
+		showHand() {
+			console.log(this.hand);
+		}
+		qtyHand() {
+			console.log(this.hand.length)
+		}
+		discard(currcard) {
+			var cardid = this.hand.indexOf(currcard);
+			if(cardid >= 0) {
+				const poppedcard = this.hand[cardid]
+				this.hand.splice(cardid, 1);					
+				console.log("Discarded, " + poppedcard)
+				}
+			else {
+				console.log("You don't have that card, nothing discarded.")
+			};
+		};
+	};
+
+// Testing area // 
+	let deck1 = new Deck
+	let Troy = new Player("Troy");
+	// // let Sarah = new Player("Sarah");
+	deck1.shuffleDeck();
+	// deck1.showDeck();
+	// Troy.sayHi();
+	// // Sarah.sayHi();
+	Troy.drawCard(deck1);
+	Troy.drawCard(deck1);
+	Troy.drawCard(deck1);
+	Troy.drawCard(deck1);
+	Troy.drawCard(deck1);
+	Troy.drawCard(deck1);
+	Troy.drawCard(deck1);
+	// // Sarah.drawCard(deck1);
+	// Sarah.drawCard(deck1);
+	// Sarah.drawCard(deck1);
+	// Sarah.drawCard(deck1);
+	// Sarah.drawCard(deck1);
+	// Sarah.drawCard(deck1);
+	// Sarah.drawCard(deck1);
+	deck1.qtyDeck();
+	console.log("troy's hand")
+	Troy.qtyHand();
+	Troy.showHand();
+	// console.log("sarah's hand")
+	// Sarah.qtyHand();
+	// Sarah.showHand();
+	Troy.discard("9 of Clubs")
+	Troy.discard("10 of Spades")
+	Troy.showHand();
+	
+	
+	// deck1.resetDeck();
+	// deck1.shuffleDeck();
+	// deck1.showDeck();
+	// for(let d = 0; d <=45; d++){
+	// 	deck1.dealCard();
+	// }
+	// deck1.showDeck();
+	
+	</script>
+</body>
+</html>

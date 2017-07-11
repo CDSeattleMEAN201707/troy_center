@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title>Javascript Demo</title>
+</head>
+<body>
+	<script>
+	var _ = {
+		map: function(list, iteratee) {
+			//Produces a new array of values by mapping each value in list through a transformation function (iteratee). \
+			//The iteratee is passed three arguments: the value, then the index (or key) of the iteration, and finally a reference to the entire list.	
+			let newlist = []	
+			if(typeof list === "array"){
+				for(let i = 0; i < list.length; i++){
+					newlist.push(iteratee(list[i]));
+				}
+			return newlist;
+			}
+			else if(typeof list === "object"){
+				for (let [key, num] of Object.entries(list)){
+					newlist.push(iteratee(num, key));
+				}
+			}
+			return newlist;
+		},
+		reduce: function(list, iteratee) { 
+			let result = 0
+			for(let i = 0; i < list.length; i++){
+				result=iteratee(result, list[i])
+			}
+			return result;
+		},
+		find: function(list, predicate) {   
+			for(let i = 0; i < list.length; i++){
+				if(predicate(list[i])){
+					return list[i];
+				}
+			} 
+		},
+		filter: function(list, predicate) { 
+			let newlist = []
+			for(let i = 0; i < list.length; i++){
+				if (predicate(list[i])){
+					newlist.push(list[i]);
+				}
+			}
+			return newlist;
+		},
+		reject: function(list, predicate) { 
+			let newlist = []
+			for(let i = 0; i < list.length; i++){
+				if (!predicate(list[i])){
+					newlist.push(list[i]);
+				}
+			}
+			return newlist;
+		}
+	}
+
+	let maptest1 = _.map([1, 2, 3], function(num){ return num * 3; });
+	console.log(maptest1)
+	//=>[3,6,9]
+
+	let maptest2 = _.map({one: 1, two: 2, three: 3}, function(num, key){ return num * 3; });
+	console.log(maptest2)
+	//=>[3,6,9]
+
+	let reducetest1 = _.reduce([1, 2, 3], function(memo, num){ return memo + num; }, 0);
+	//=> 6
+	console.log(reducetest1)
+
+	let findtest1 = _.find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+	//=> 2
+	console.log(findtest1)
+
+	let filtertest1 = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+	//=> [2, 4, 6]
+	console.log(filtertest1)
+
+	let rejecttest1 = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+	//=> [1, 3, 5]
+	console.log(rejecttest1)
+	</script>
+</body>
+</html>
