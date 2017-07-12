@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>Quoting Dojo</title>
+        <meta description='Main page for Quoting Dojo App'
+        <meta charset='utf-8'/>
+        <link rel='stylesheet' type='text/css' href='css/styles.css' />
+    </head>
+    <body>
+        <div id='wrapper'>
+            <h2>Quoting Dojo</h2>
+            <br>
+            <div>
+                <form id='userform' action="/quotes" method='POST'>
+                    <label for="name">Your Name:</label>
+                    <input type="text" name="name" value=""><br><br>
+                    <label for="quote">Your Quote:</label><br>
+                    <textarea name='quote' rows="5" cols="50"></textarea><br><br>
+                    <input type="submit" name="submitquote" value="Add My Quote">
+                </form>
+                <form id='gotoquotes' action="/quotes" method='GET'> 
+                    <input type="submit" name="gotoquotes" value="Skip to Quotes!">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
