@@ -1,0 +1,9 @@
+.formerrors {
+    font-size: .8em;
+    color: red;
+}
+#success {
+    color: green; 
+    font-weight: bold;
+    font-size: .8em;
+}
