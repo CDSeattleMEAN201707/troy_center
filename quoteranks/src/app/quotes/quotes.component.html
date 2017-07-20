@@ -1,0 +1,40 @@
+<div id="formheader">
+  <h2>Add a Quote</h2>
+  <div id='quoteformdiv'>
+    <form (submit)='submitNewQuote()' name="quoteForm" #quoteForm='ngForm'>
+      <textarea name='quote' rows="5" cols="60" 
+        required minlength='4' maxlength="500" autofocus [(ngModel)]="currquote.quote" 
+        #quote='ngModel'></textarea><br><br>
+      <label id='authorlabel' for="author">Author</label>
+      <input type="text" id='author' name="author" 
+        required minlength='1' maxlength="50" [(ngModel)]="currquote.author" 
+        #author='ngModel'><br><br>
+      <input type="submit" [disabled]="!quoteForm.form.valid" 
+        id='submitquote' value="Add Quote">
+    </form>  
+  </div>
+  <div id='errors'>
+    <span class="formerrors" *ngIf='!quote.valid && quote.dirty'>
+      <i>Quote must be over 4 characters.</i></span><br><br>
+    <span class="formerrors" *ngIf='!author.valid && author.dirty'>
+      <i>Author must be over 1 character.</i></span><br><br>
+    </div>
+</div>
+<h3> Quotes List</h3>
+<div *ngIf="quotes.length === 0"><p>There are no quotes yet, Add one!</p></div>
+<div *ngFor="let quote of quotes">
+  <div class='quotes' *ngIf="quote.active === 1">
+    <div id="thequote">
+      <p>{{ quote.quote }}</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;~{{ quote.author }}</p>
+    </div>
+    <div id='votescount'>
+      <h3><span *ngIf="quote.votes > 0">+</span>{{ quote.votes }}</h3>
+    </div>
+    <div id='likebuttons'>
+      <button id="UPButton" (click)="processVoteUP([quote.id])">Vote UP</button><br><br>
+      <button id="DOWNButton" (click)="processVoteDOWN([quote.id])">Vote DOWN</button><br><br>
+      <button id="DELETEButton" (click)="processDELETE([quote.id])">DELETE</button>
+    </div>
+  </div>
+</div>
